@@ -9,13 +9,12 @@ import { createStaggeredReveal } from '@/lib/motion-presets';
 import { theme } from '@/lib/theme';
 
 const iconByService: Record<string, Parameters<typeof IconGlyph>[0]['kind']> = {
+  'cost-analysis': 'optimization',
+  procurement: 'integration',
   forecasting: 'forecast',
+  logistics: 'visibility',
   automation: 'automation',
-  exceptions: 'exceptions',
-  visibility: 'visibility',
-  optimization: 'optimization',
-  'digital-twin': 'twin',
-  integration: 'integration'
+  visibility: 'visibility'
 };
 
 const cardVariants = createStaggeredReveal(MOTION.duration.base / 1000, MOTION.stagger.normal);
@@ -25,12 +24,12 @@ export function SolutionsSection() {
     <SectionShell id="solutions" eyebrow={site.sections.solutions.eyebrow} title={site.sections.solutions.title} lead={site.sections.solutions.lead}>
       <div className="grid gap-6 lg:grid-cols-[0.34fr_0.66fr] lg:items-start">
         <div className="rounded-[1.5rem] border border-line/60 bg-white/74 p-6 shadow-soft lg:sticky lg:top-24">
-          <div className={theme.typography.label + ' text-muted'}>Core offers</div>
+          <div className={theme.typography.label + ' text-muted'}>AI solutions</div>
           <p className="mt-5 max-w-[28ch] text-base leading-8 text-muted">
-            A focused portfolio of operational systems, each designed to reduce friction at a different point in the chain.
+            Each solution targets a specific cost driver with AI — delivering measurable savings across your supply chain.
           </p>
           <div className="mt-8 rounded-[1.25rem] border border-line/60 bg-[#f6f4ee] p-4 text-sm leading-7 text-fg">
-            We tune the entry point by system, not by marketing slogan.
+            Every recommendation is backed by data and ranked by potential savings.
           </div>
         </div>
 

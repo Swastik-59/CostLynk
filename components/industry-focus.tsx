@@ -21,9 +21,9 @@ export function IndustryFocusSection() {
   return (
     <SectionShell
       id="sectors"
-      eyebrow="Industry focus"
-      title="Different operating models, one coherent delivery pattern."
-      lead="Each vertical gets its own emphasis, but the system pattern remains the same: clean signal capture, better decisions, and controlled automation."
+      eyebrow="Industries we serve"
+      title="AI cost optimisation tailored to your industry."
+      lead="Every industry has unique cost drivers. CostLynk's AI adapts to your sector — delivering savings that generic tools miss."
     >
       <div className="grid gap-6 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
         <div className="flex flex-wrap gap-2 lg:flex-col lg:gap-3">

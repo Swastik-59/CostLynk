@@ -124,8 +124,8 @@ export function HeroSection() {
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
-                <div className="font-mono text-[0.64rem] uppercase tracking-[0.34em] text-white/45">Operational readout</div>
-                <div className="mt-2 text-sm text-white/70">Live system posture</div>
+                <div className="font-mono text-[0.64rem] uppercase tracking-[0.34em] text-white/45">Cost savings snapshot</div>
+                <div className="mt-2 text-sm text-white/70">Live AI analysis</div>
               </div>
               <div className="font-mono text-[0.64rem] uppercase tracking-[0.3em] text-white/45">{timestamp}</div>
             </div>
@@ -145,7 +145,7 @@ export function HeroSection() {
             </div>
 
             <p className="mt-6 max-w-[24ch] text-sm leading-7 text-white/55">
-              Calm systems. Governed decisions. Measured execution.
+              AI-powered. Data-driven. Savings delivered.
             </p>
           </motion.aside>
         </div>

@@ -58,7 +58,7 @@ export function FinalCtaSection() {
             variants={itemVariants}
             className="mt-10 grid gap-4 rounded-[1.25rem] border border-line/50 bg-white/72 p-6"
           >
-            <div className="text-sm font-semibold text-fg">What you get in the first session</div>
+            <div className="text-sm font-semibold text-fg">What you get in the free audit</div>
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -67,9 +67,9 @@ export function FinalCtaSection() {
               className="grid gap-3 text-sm leading-7 text-muted"
             >
               {[
-                'Operational audit of the current signal flow',
-                'Priority list of high-friction decisions',
-                'Clear next step for forecasting, automation, or integration'
+                'AI analysis of your top cost leakage areas',
+                'Prioritised savings opportunities ranked by impact',
+                'A clear roadmap to start reducing costs immediately'
               ].map((item) => (
                 <motion.div key={item} variants={itemVariants} className="flex gap-3">
                   <span className="text-accent mt-1">→</span>
@@ -113,7 +113,7 @@ export function FinalCtaSection() {
               <textarea
                 rows={4}
                 className="resize-none rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-white/28 focus:bg-white/[0.08] focus:ring-1 focus:ring-accent/20"
-                placeholder="Forecast drift, exception handling, integration gaps, warehouse congestion..."
+                placeholder="High freight costs, procurement inefficiencies, inventory waste, manual processes..."
               />
             </label>
 
@@ -128,7 +128,7 @@ export function FinalCtaSection() {
           </div>
 
           <p className="mt-6 text-xs text-white/40">
-            We'll review your audit in 2 business days and schedule a working session.
+            We'll review your data within 2 business days and share your personalised savings report.
           </p>
         </motion.form>
       </div>

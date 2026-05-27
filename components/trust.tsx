@@ -13,15 +13,15 @@ export function TrustSection() {
   return (
     <SectionShell
       id="trust"
-      eyebrow="Enterprise readiness"
-      title="Confidence is built through the operating model, not through decorative claims."
-      lead="The delivery approach is explicit about integrations, security, scaling, and the support model around implementation."
+      eyebrow="Why CostLynk"
+      title="Built for enterprise teams that need real savings, not dashboards."
+      lead="CostLynk is designed for security, scale, and fast time-to-value — so your team sees results in weeks."
     >
       <div className="grid gap-6 lg:grid-cols-[0.33fr_0.67fr] lg:items-start">
         <div className="rounded-[1.5rem] border border-line/60 bg-white/74 p-6 shadow-soft lg:sticky lg:top-24">
-          <div className={theme.typography.label + ' text-muted'}>Enterprise readiness</div>
+          <div className={theme.typography.label + ' text-muted'}>Why teams choose us</div>
           <p className="mt-5 max-w-[28ch] text-base leading-8 text-muted">
-            Enterprise trust comes from delivery structure, governance, and support expectations.
+            Enterprise-grade security, fast deployment, and AI that keeps getting smarter.
           </p>
         </div>
 
@@ -64,11 +64,11 @@ export function TrustSection() {
           viewport={{ once: true }}
         >
           <div className="font-mono text-[0.65rem] uppercase tracking-[0.32em] text-white/50">
-            Delivery posture
+            Deployment approach
           </div>
           <p className="mt-5 max-w-prose text-base leading-8 text-white/85">
-            A phased engagement model built for enterprise teams that need to see value early without
-            losing control over governance, access, or change management.
+            A phased rollout designed for enterprise teams — see savings within weeks while maintaining
+            full control over data, access, and change management.
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export function TrustSection() {
           viewport={{ once: true }}
           className="grid gap-3 text-sm text-white/80"
         >
-          {['Audit first', 'Integrate cleanly', 'Scale deliberately'].map((item, i) => (
+          {['Audit first', 'Integrate fast', 'Scale savings'].map((item, i) => (
             <motion.div
               key={item}
               initial={{ opacity: 0, x: 12 }}
