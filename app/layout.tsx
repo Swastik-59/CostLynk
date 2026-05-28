@@ -1,46 +1,52 @@
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono, IBM_Plex_Sans, Inter_Tight } from 'next/font/google';
 import './globals.css';
-import { brand } from '@/lib/brand';
-import { theme } from '@/lib/theme';
+import { BRAND } from '@/lib/brand';
+import SmoothScroll from '@/components/smooth-scroll';
 
 const sans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-sans'
+  variable: '--font-sans',
+  display: 'swap',
 });
 
 const display = Inter_Tight({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-display'
+  variable: '--font-display',
+  display: 'swap',
 });
 
 const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
-  variable: '--font-mono'
+  variable: '--font-mono',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: `${brand.shortName} | Operational intelligence for supply chain systems`,
-  description: 'A premium systems intelligence company for logistics, warehousing, manufacturing, and distribution teams.',
-  metadataBase: new URL('https://arcline.example'),
-  openGraph: {
-    title: `${brand.shortName} | Operational intelligence for supply chain systems`,
-    description: 'Forecast demand more accurately, automate exceptions, and coordinate decisions across systems.',
-    type: 'website'
-  }
+  title: `${BRAND.name} — Operational Intelligence`,
+  description: 'Enterprise AI and automation systems for high-stakes operational workflows, supply chain, and cost engineering.',
+  metadataBase: new URL('https://costlynk.com'),
+  icons: {
+    icon: BRAND.favicon,
+    other: [
+      { rel: 'icon', url: BRAND.logo },
+    ],
+  },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

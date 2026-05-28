@@ -1,154 +1,103 @@
-
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { site } from '@/src/config/site';
-import { layout } from '@/lib/layout';
-import { motionSystem } from '@/lib/motion';
-import { theme } from '@/lib/theme';
+import TextReveal from './text-reveal';
+import MagneticButton from './magnetic-button';
+import { MOTION } from '@/lib/design-tokens';
 
 export function HeroSection() {
-  const reduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
 
-  const [time, setTime] = useState(() => new Date());
-  useEffect(() => {
-    const id = setInterval(() => setTime(new Date()), 1000 * 3);
-    return () => clearInterval(id);
-  }, []);
-
-  const timestamp = useMemo(() => {
-    const hh = String(time.getUTCHours()).padStart(2, '0');
-    const mm = String(time.getUTCMinutes()).padStart(2, '0');
-    const ss = String(time.getUTCSeconds()).padStart(2, '0');
-    return `SYN ${hh}:${mm}:${ss} UTC`;
-  }, [time]);
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 500);
-    return () => clearTimeout(t);
-  }, []);
+  // Subtle parallax effect on hero content
+  const yContent = useTransform(scrollY, [0, 800], [0, 120]);
+  const opacityContent = useTransform(scrollY, [0, 600], [1, 0]);
+  const yGrid = useTransform(scrollY, [0, 1000], [0, -48]);
 
   return (
-    <section id="hero" className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div
-          data-parallax="0.35"
-          className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_14%_12%,rgba(91,123,255,0.12),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.82),transparent_26%)]"
-        />
-        <div
-          data-parallax="0.15"
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(17,20,26,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,20,26,0.03)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30 [mask-image:radial-gradient(circle_at_center,black_26%,transparent_100%)]"
-        />
-        <div className="absolute left-1/2 top-[18%] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(91,123,255,0.08),transparent_68%)] blur-3xl" />
-      </div>
-
-      <div className={layout.heroFrame}>
-        <div className="grid gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
-          <div className="max-w-[44rem] text-left pt-10 md:pt-12 lg:pt-16">
+    <section
+      id="hero"
+      ref={containerRef}
+      className="relative min-h-[95vh] flex flex-col justify-center overflow-hidden bg-bg py-20 lg:py-28"
+    >
+      <motion.div
+        style={{ y: yGrid }}
+        data-parallax="0.8"
+        className="pointer-events-none absolute inset-0 opacity-[0.28]"
+      >
+        <div className="h-full w-full bg-[linear-gradient(to_right,rgba(132,122,102,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(132,122,102,0.12)_1px,transparent_1px)] bg-[size:68px_68px]" />
+      </motion.div>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(77,105,141,0.12),transparent_46%)]" />
+      <div className="frame flex flex-col justify-between h-full relative z-10">
+        <motion.div
+          style={{ y: yContent, opacity: opacityContent }}
+          data-reveal
+          className="grid gap-10 lg:grid-cols-12 lg:items-end"
+        >
+          <div className="space-y-8 lg:col-span-8">
             <motion.p
-              data-reveal
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: motionSystem.duration.base / 1000, ease: motionSystem.easing.standard }}
-              className={`${theme.typography.label} text-accent`}
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: MOTION.duration.slow, ease: MOTION.ease.smooth }}
+              className="font-mono text-label text-accent select-none"
             >
               {site.hero.eyebrow}
             </motion.p>
 
-            <motion.h1
-              data-reveal
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: motionSystem.duration.slow / 1000, ease: motionSystem.easing.standard, delay: 0.04 }}
-              className={`font-display mt-5 max-w-[11ch] ${theme.typography.headline} text-fg md:max-w-[12ch]`}
-            >
-              {site.hero.headline}
-            </motion.h1>
+            <h1 className="font-display text-display-xl font-semibold tracking-tighter text-fg text-pretty max-w-[15ch]">
+              <TextReveal text={site.hero.headline} delay={0.08} once />
+            </h1>
+          </div>
 
+          <div className="lg:col-span-4 space-y-8 lg:pb-2">
             <motion.p
-              data-reveal
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: motionSystem.duration.base / 1000, ease: motionSystem.easing.standard, delay: 0.1 }}
-              className="mt-7 max-w-[34rem] text-base leading-8 text-muted md:text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: MOTION.duration.slow, delay: 0.3, ease: MOTION.ease.smooth }}
+              className="max-w-[30ch] text-body text-stone-500 font-sans leading-relaxed text-pretty"
             >
               {site.hero.subhead}
             </motion.p>
 
             <motion.div
-              data-reveal
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: motionSystem.duration.base / 1000, ease: motionSystem.easing.standard, delay: 0.14 }}
-              className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: MOTION.duration.slow, delay: 0.44, ease: MOTION.ease.smooth }}
+              className="flex flex-wrap gap-3 items-center"
             >
-              <a
-                href={site.hero.primaryCta.href}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-fg px-7 py-3.5 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg focus-visible:ring-offset-2"
-              >
-                {site.hero.primaryCta.label}
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              <a href="#contact">
+                <MagneticButton variant="primary">
+                  {site.hero.ctaPrimary}
+                </MagneticButton>
               </a>
-              <a
-                href={site.hero.secondaryCta.href}
-                className="inline-flex items-center justify-center rounded-full border border-line/80 px-6 py-3 text-sm font-medium text-fg transition-colors duration-200 hover:border-fg hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line focus-visible:ring-offset-2"
-              >
-                {site.hero.secondaryCta.label}
+              <a href="#challenge">
+                <MagneticButton variant="secondary">
+                  {site.hero.ctaSecondary}
+                </MagneticButton>
               </a>
-            </motion.div>
-
-            <motion.div
-              data-reveal
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: motionSystem.duration.base / 1000, ease: motionSystem.easing.standard, delay: 0.18 }}
-              className="mt-12 grid gap-3 sm:grid-cols-3"
-            >
-              {site.hero.trustStats.map((stat) => (
-                <div key={stat.label} className="rounded-[1.1rem] border border-line/70 bg-white/55 p-4 backdrop-blur-sm">
-                  <div className="font-mono text-[0.64rem] uppercase tracking-[0.3em] text-muted">{stat.label}</div>
-                  <div className="mt-4 text-lg font-semibold tracking-[-0.03em] text-fg">{stat.value}</div>
-                </div>
-              ))}
             </motion.div>
           </div>
+        </motion.div>
 
-          <motion.aside
-            data-reveal
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: motionSystem.duration.slow / 1000, ease: motionSystem.easing.standard, delay: 0.14 }}
-            className="rounded-[1.5rem] border border-line/70 bg-[rgba(12,15,20,0.94)] p-6 text-white shadow-soft"
-          >
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div>
-                <div className="font-mono text-[0.64rem] uppercase tracking-[0.34em] text-white/45">Cost savings snapshot</div>
-                <div className="mt-2 text-sm text-white/70">Live AI analysis</div>
-              </div>
-              <div className="font-mono text-[0.64rem] uppercase tracking-[0.3em] text-white/45">{timestamp}</div>
-            </div>
-
-            <div className="mt-6 grid gap-4">
-              {site.hero.trustStats.map((stat, index) => (
-                <div key={stat.label} className="rounded-[1.1rem] border border-white/10 bg-white/[0.04] p-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <div className="font-mono text-[0.62rem] uppercase tracking-[0.32em] text-white/40">0{index + 1}</div>
-                      <div className="mt-2 text-sm text-white/70">{stat.label}</div>
-                    </div>
-                    <div className="text-right text-base font-medium tracking-[-0.02em] text-white">{stat.value}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-6 max-w-[24ch] text-sm leading-7 text-white/55">
-              AI-powered. Data-driven. Savings delivered.
-            </p>
-          </motion.aside>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: MOTION.duration.cinematic, delay: 0.6, ease: MOTION.ease.out }}
+          className="mt-20 lg:mt-28 border-t border-stone-300 pt-6 grid gap-4 md:grid-cols-3"
+          data-reveal
+        >
+          <div className="font-mono text-micro text-stone-500">
+            {site.hero.metaPrimary}
+          </div>
+          <div className="font-mono text-micro text-stone-500">
+            {site.hero.metaSecondary}
+          </div>
+          <div className="font-mono text-micro text-stone-500 md:text-right">
+            {site.hero.metaTertiary}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

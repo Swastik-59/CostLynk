@@ -4,29 +4,37 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { site } from '@/src/config/site';
 import { SectionShell } from '@/components/section-shell';
-import { cn } from '@/lib/utils';
+import { MOTION } from '@/lib/design-tokens';
 
 const tabs = [
-  { key: 'logistics', label: 'Logistics' },
-  { key: 'manufacturing', label: 'Manufacturing' },
-  { key: 'warehousing', label: 'Warehousing' },
-  { key: 'distribution', label: 'Distribution' },
-  { key: 'retail', label: 'Retail supply chain' }
+  { key: 'logistics', label: 'LOGISTICS' },
+  { key: 'manufacturing', label: 'MANUFACTURING' },
+  { key: 'warehousing', label: 'WAREHOUSING' },
+  { key: 'distribution', label: 'DISTRIBUTION' },
+  { key: 'retail', label: 'RETAIL' },
 ] as const;
 
+type TabKey = (typeof tabs)[number]['key'];
+
 export function IndustryFocusSection() {
-  const [active, setActive] = useState<(typeof tabs)[number]['key']>('logistics');
-  const current = site.sectors[active];
+  const [active, setActive] = useState<TabKey>('logistics');
+
+  // Find corresponding index or entry
+  const currentIndex = tabs.findIndex((t) => t.key === active);
+  const currentData = site.industriesList[currentIndex] ?? site.industriesList[0];
 
   return (
     <SectionShell
-      id="sectors"
-      eyebrow="Industries we serve"
-      title="AI cost optimisation tailored to your industry."
-      lead="Every industry has unique cost drivers. CostLynk's AI adapts to your sector — delivering savings that generic tools miss."
+      id="industries"
+      eyebrow={site.sections.industries.eyebrow}
+      title={site.sections.industries.title}
+      lead={site.sections.industries.lead}
+      variant="dark"
+      annotation={site.sections.industries.annotation}
+      className="border-y border-stone-800"
     >
-      <div className="grid gap-6 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
-        <div className="flex flex-wrap gap-2 lg:flex-col lg:gap-3">
+      <div className="space-y-10">
+        <div className="flex flex-wrap gap-2 pb-6 border-b border-stone-800">
           {tabs.map((tab) => {
             const isActive = tab.key === active;
             return (
@@ -34,12 +42,11 @@ export function IndustryFocusSection() {
                 key={tab.key}
                 type="button"
                 onClick={() => setActive(tab.key)}
-                className={cn(
-                  'rounded-full border px-4 py-2 text-left text-sm transition-colors duration-200 lg:w-full',
+                className={`relative font-mono text-micro px-5 py-2.5 rounded-pill border select-none transition-all duration-300 ${
                   isActive
-                    ? 'border-fg bg-fg text-white'
-                    : 'border-line/70 bg-white/70 text-muted hover:border-fg/30 hover:text-fg'
-                )}
+                    ? 'bg-stone-100 text-graphite-950 border-stone-100'
+                    : 'bg-transparent text-stone-400 border-stone-800 hover:text-stone-100 hover:border-stone-600'
+                }`}
                 aria-selected={isActive}
               >
                 {tab.label}
@@ -48,31 +55,50 @@ export function IndustryFocusSection() {
           })}
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.article
-            key={active}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-[1.75rem] border border-line/60 bg-white/82 p-6 shadow-soft"
-          >
-            <div className="font-mono text-[0.7rem] uppercase tracking-[0.32em] text-muted">
-              {current.headline}
-            </div>
-            <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-fg md:text-4xl">
-              {current.summary}
-            </h3>
+        <div className="min-h-[22rem]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: MOTION.duration.base, ease: MOTION.ease.smooth }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+            >
+              <div className="lg:col-span-4 space-y-4">
+                <span className="font-mono text-micro text-accent font-semibold block uppercase">
+                  {currentData.name} Focus
+                </span>
+                <h3 className="font-display text-display font-semibold text-stone-100 leading-tight max-w-[16ch]">
+                  {currentData.headline}
+                </h3>
+                <p className="text-body text-stone-300 font-sans leading-relaxed">
+                  {currentData.body}
+                </p>
+              </div>
 
-            <div className="mt-8 grid gap-3 md:grid-cols-3">
-              {current.points.map((point) => (
-                <div key={point} className="rounded-2xl border border-line/60 bg-[color:rgba(244,242,236,0.78)] p-4 text-sm leading-7 text-fg">
-                  {point}
+              <div className="lg:col-span-8 space-y-4">
+                <span className="font-mono text-micro text-stone-500 block">
+                  SYSTEM LEVERAGE OPPORTUNITIES
+                </span>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {currentData.points.map((point, index) => (
+                    <motion.div
+                      key={point}
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: MOTION.duration.base, delay: index * MOTION.stagger.subtle }}
+                      className="flex items-center gap-4 rounded-card bg-graphite-800 border border-stone-800 p-5 text-stone-200"
+                    >
+                      <span className="font-mono text-micro text-accent">0{index + 1}</span>
+                      <p className="text-body text-stone-200 font-medium">{point}</p>
+                    </motion.div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </motion.article>
-        </AnimatePresence>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </SectionShell>
   );

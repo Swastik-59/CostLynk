@@ -1,135 +1,99 @@
-"use client";
+'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { site } from '@/src/config/site';
+import TextReveal from './text-reveal';
+import MagneticButton from './magnetic-button';
 import { MOTION } from '@/lib/design-tokens';
-import { theme } from '@/lib/theme';
 
 export function FinalCtaSection() {
-  const reduceMotion = useReducedMotion();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: MOTION.stagger.subtle,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: MOTION.duration.base / 1000, ease: MOTION.easing.default },
-    },
-  };
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: '-10%' });
 
   return (
-    <section id="contact" className="border-t border-line/40 bg-gradient-to-b from-white/0 via-white/30 to-white/0">
-      <div className="mx-auto grid max-w-frame gap-10 px-6 py-20 md:px-8 md:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:px-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-100px' }}
-          className="max-w-[34rem]"
-        >
-          <motion.p variants={itemVariants} className={theme.typography.label + ' text-muted/80'}>
-            Contact
-          </motion.p>
-          <motion.h2
-            variants={itemVariants}
-            className="font-display mt-6 max-w-[13ch] text-[clamp(2.8rem,5vw,5.2rem)] font-semibold leading-[0.92] tracking-[-0.06em] text-fg"
+    <section
+      id="contact"
+      ref={containerRef}
+      className="relative bg-bg py-24 md:py-30 lg:py-36 overflow-hidden border-t border-stone-300"
+    >
+      <div className="frame grid gap-14 lg:grid-cols-12">
+        <div className="space-y-4 lg:col-span-5">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: MOTION.duration.slow, ease: MOTION.ease.smooth }}
+            className="font-mono text-micro text-accent font-semibold block uppercase"
           >
-            {site.cta.headline}
-          </motion.h2>
+            {site.ctaSection.kicker}
+          </motion.span>
+          <h2 className="font-display text-display font-semibold text-fg tracking-tight text-pretty max-w-[18ch]">
+            <TextReveal text={site.sections.cta.headline} once />
+          </h2>
           <motion.p
-            variants={itemVariants}
-            className="mt-8 max-w-prose text-base leading-8 text-muted md:text-lg"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: MOTION.duration.slow, delay: 0.2, ease: MOTION.ease.smooth }}
+            className="text-body text-stone-500 font-sans leading-relaxed text-pretty max-w-[40ch]"
           >
-            {site.cta.subhead}
+            {site.sections.cta.subhead}
           </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 grid gap-4 rounded-[1.25rem] border border-line/50 bg-white/72 p-6"
-          >
-            <div className="text-sm font-semibold text-fg">What you get in the free audit</div>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-3 text-sm leading-7 text-muted"
-            >
-              {[
-                'AI analysis of your top cost leakage areas',
-                'Prioritised savings opportunities ranked by impact',
-                'A clear roadmap to start reducing costs immediately'
-              ].map((item) => (
-                <motion.div key={item} variants={itemVariants} className="flex gap-3">
-                  <span className="text-accent mt-1">→</span>
-                  {item}
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          <p className="font-mono text-micro text-stone-500 border-l border-stone-300 pl-4 max-w-[34ch]">
+            {site.ctaSection.meta}
+          </p>
+        </div>
 
         <motion.form
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: MOTION.duration.slow / 1000, delay: 0.2, ease: MOTION.easing.smooth }}
-          viewport={{ once: true }}
-          className="rounded-[1.5rem] border border-line/60 bg-[#0f1218] p-8 text-white shadow-soft"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: MOTION.duration.slow, delay: 0.3, ease: MOTION.ease.smooth }}
+          className="w-full space-y-8 text-left lg:col-span-7 lg:mt-3"
+          onSubmit={(e) => e.preventDefault()}
         >
-          <div className={theme.typography.label + ' text-white/50'}>
-            Let's start the conversation
-          </div>
-
-          <div className="mt-8 grid gap-5">
-            <label className="grid gap-2 text-sm text-white/80">
-              <span className="font-medium">{site.cta.form.name}</span>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="relative group">
               <input
                 type="text"
-                className="rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-white/28 focus:bg-white/[0.08] focus:ring-1 focus:ring-accent/20"
-                placeholder="Your name"
+                required
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-stone-300 py-3 text-fg outline-none transition-colors duration-300 focus:border-accent"
               />
-            </label>
-            <label className="grid gap-2 text-sm text-white/80">
-              <span className="font-medium">{site.cta.form.email}</span>
+              <label className="absolute left-0 top-3 text-stone-400 pointer-events-none transition-all duration-300 origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 font-sans text-body">
+                {site.ctaSection.form.name}
+              </label>
+            </div>
+
+            <div className="relative group">
               <input
                 type="email"
-                className="rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-white/28 focus:bg-white/[0.08] focus:ring-1 focus:ring-accent/20"
-                placeholder="name@company.com"
+                required
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-stone-300 py-3 text-fg outline-none transition-colors duration-300 focus:border-accent"
               />
-            </label>
-            <label className="grid gap-2 text-sm text-white/80">
-              <span className="font-medium">{site.cta.form.message}</span>
+              <label className="absolute left-0 top-3 text-stone-400 pointer-events-none transition-all duration-300 origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 font-sans text-body">
+                {site.ctaSection.form.email}
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className="relative group">
               <textarea
-                rows={4}
-                className="resize-none rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-white outline-none transition-colors duration-200 placeholder:text-white/30 focus:border-white/28 focus:bg-white/[0.08] focus:ring-1 focus:ring-accent/20"
-                placeholder="High freight costs, procurement inefficiencies, inventory waste, manual processes..."
+                required
+                rows={3}
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-stone-300 py-3 text-fg outline-none transition-colors duration-300 focus:border-accent resize-none"
               />
-            </label>
-
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.02, transition: { duration: MOTION.duration.fast / 1000 } }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-sm font-bold text-[#0f1218] transition-all duration-200 hover:shadow-lg hover:bg-white/95"
-            >
-              {site.cta.submit}
-            </motion.button>
+              <label className="absolute left-0 top-3 text-stone-400 pointer-events-none transition-all duration-300 origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 font-sans text-body">
+                {site.ctaSection.form.message}
+              </label>
+            </div>
           </div>
 
-          <p className="mt-6 text-xs text-white/40">
-            We'll review your data within 2 business days and share your personalised savings report.
-          </p>
+          <div className="flex justify-start pt-2">
+            <MagneticButton variant="primary" type="submit">
+              {site.ctaSection.submit}
+            </MagneticButton>
+          </div>
         </motion.form>
       </div>
     </section>

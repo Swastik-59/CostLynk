@@ -1,5 +1,5 @@
 {
-  "name": "arcline-website",
+  "name": "costlynk-website",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -11,14 +11,12 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.1",
     "framer-motion": "^12.23.5",
     "gsap": "^3.13.0",
+    "lenis": "^1.1.20",
     "next": "^15.4.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "three": "^0.178.0"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

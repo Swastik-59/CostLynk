@@ -1,8 +1,6 @@
-export const brand = {
+export const BRAND = {
   name: 'CostLynk',
-  shortName: 'CostLynk',
-  descriptor: 'AI-powered cost intelligence',
-  discipline: 'Cost optimization & supply chain AI',
-  tagline: 'AI that optimises every cost across your supply chain.',
-  accent: '222 82% 58%'
+  descriptor: 'Operational Intelligence',
+  logo: '/logo.svg',
+  favicon: '/favicon.png',
 } as const;

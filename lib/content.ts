@@ -1,169 +1,228 @@
-import { brand } from './brand';
+import { BRAND } from './brand';
 
 export const site = {
-  companyName: brand.name,
-  tagline: brand.tagline,
+  companyName: BRAND.name,
+  tagline: 'Operational intelligence for supply-chain enterprises.',
+  headerCta: 'Book Consultation',
+  mobileMenuClose: 'Close',
+  mobileMenuCta: 'Request Consultation',
+  footerRights: 'All rights reserved.',
+  capabilityMeta: 'DEPLOYMENT READY',
+  trustMeta: 'ASSURANCE LAYER',
+  trustStatus: 'VERIFIED',
+  methodologyRail: '01 / CURRENT STATE MAPPING\n02 / BOTTLENECK DIAGNOSIS\n03 / SYSTEM ARCHITECTURE\n04 / EMBEDDED DEPLOYMENT\n05 / ITERATIVE IMPROVEMENT',
+  methodologyNoteLabel: 'ENGAGEMENT MODEL',
+  methodologyNote: 'We work in practical rollout phases, starting with a workflow audit and ending in measured production deployment against agreed KPIs.',
   navLinks: [
-    { label: 'Challenge', href: '#problem' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'How it works', href: '#system' },
-    { label: 'Process', href: '#process' },
-    { label: 'Results', href: '#proof' },
-    { label: 'Industries', href: '#sectors' },
-    { label: 'Get started', href: '#contact' }
+    { label: 'Challenge', href: '#challenge' },
+    { label: 'Capabilities', href: '#capabilities' },
+    { label: 'Methodology', href: '#methodology' },
+    { label: 'Industries', href: '#industries' },
+    { label: 'Contact', href: '#contact' },
   ],
   hero: {
-    eyebrow: brand.discipline,
-    headline: 'AI that finds hidden cost across your supply chain.',
-    subhead:
-      'CostLynk uses AI to analyse procurement, logistics, and operations data — surfacing savings, eliminating waste, and optimising every link in your supply chain.',
-    primaryCta: { label: 'Get your free cost audit', href: '#contact' },
-    secondaryCta: { label: 'See how it works', href: '#system' },
-    trustStats: [
-      { value: 'Up to 30%', label: 'cost reduction' },
-      { value: '< 4 weeks', label: 'time to first insights' },
-      { value: 'AI-powered', label: 'end-to-end optimisation' }
-    ]
+    eyebrow: BRAND.descriptor,
+    headline: 'Your operations already have data. They need system-level intelligence.',
+    subhead: 'CostLynk designs and integrates AI systems directly into live supply-chain workflows so teams spend less time on manual coordination and more time on high-value decisions.',
+    ctaPrimary: 'Start a Consultation',
+    ctaSecondary: 'View Method',
+    metaPrimary: 'LOGISTICS · MANUFACTURING · WAREHOUSING · DISTRIBUTION · RETAIL',
+    metaSecondary: 'PRIVATE DEPLOYMENT OPTIONS (VPC / PRIVATE CLOUD / ON-PREM PATHWAYS)',
+    metaTertiary: 'OPERATIONAL AUTOMATION · COST VISIBILITY · DECISION SUPPORT',
   },
   sections: {
-    problem: {
-      eyebrow: 'The challenge',
-      title: 'Hidden costs are silently draining your margins.',
-      lead:
-        'Most companies lose 15–25% of their supply chain spend to inefficiencies they can\'t see — fragmented data, manual processes, and reactive decision-making.'
+    challenge: {
+      eyebrow: 'The Problem',
+      title: 'Most operational teams still rely on manual coordination to keep systems moving.',
+      lead: 'Data exists across ERP, WMS, TMS, procurement tools, and inboxes, but decisions are still stitched together by people. That gap creates delay, inconsistency, and avoidable cost.',
+      annotation: 'Where manual effort replaces missing system logic.',
     },
-    solutions: {
-      eyebrow: 'Our AI solutions',
-      title: 'Intelligent tools that cut cost and optimise every link.',
-      lead: 'Each solution targets a specific cost driver with AI-powered analysis, automation, and continuous optimisation.'
+    capabilities: {
+      eyebrow: 'Capabilities',
+      title: 'AI capability, embedded where operational decisions actually happen.',
+      lead: 'We build practical intelligence systems that connect to your existing stack and automate repetitive workflow layers without forcing a platform reset.',
+      annotation: 'From quotation intake to cost and procurement control.',
     },
-    system: {
-      eyebrow: 'How it works',
-      title: 'Your data flows in. Actionable cost savings flow out.',
-      lead:
-        'CostLynk connects to your existing systems, analyses spend patterns with AI, and delivers prioritised savings recommendations you can act on immediately.'
+    methodology: {
+      eyebrow: 'Method',
+      title: 'A disciplined delivery method from process audit to production rollout.',
+      lead: 'We start by understanding how your team currently handles cost engineering and workflow handoffs, then implement targeted automation and AI where it reduces real operational friction.',
+      annotation: 'Measured implementation with clear checkpoints.',
     },
-    process: {
-      eyebrow: 'Our process',
-      title: 'From cost audit to continuous optimisation in weeks, not months.',
-      lead: 'We start with a free diagnostic of your supply chain costs, then deploy AI solutions that deliver measurable savings fast.'
+    industries: {
+      eyebrow: 'Industries',
+      title: 'Designed for industries where timing, margin, and execution quality are non-negotiable.',
+      lead: 'Each environment has different constraints. We adapt architecture, automation depth, and model behavior to the operating reality of each sector.',
+      annotation: 'Industry-specific implementation patterns.',
     },
-    proof: {
-      eyebrow: 'Proven results',
-      title: 'Real savings our AI has delivered for supply chain teams.',
-      lead: 'Representative outcomes from our AI-powered cost optimisation programs. Results vary by data quality and scope.'
-    }
+    trust: {
+      eyebrow: 'Deployment Assurance',
+      title: 'Built for enterprise governance, security boundaries, and operational continuity.',
+      lead: 'Our deployments respect existing controls, infrastructure constraints, and internal accountability standards from day one.',
+      annotation: 'Security, integration, and governance by default.',
+    },
+    cta: {
+      headline: 'Start with one workflow. Improve it end-to-end.',
+      subhead: 'Share your current process, constraints, and timeline. We will identify where AI and automation can deliver measurable impact without operational disruption.',
+    },
   },
-  services: [
+  challenges: [
     {
-      id: 'cost-analysis',
-      title: 'AI cost analysis',
-      summary: 'Our AI scans every transaction, contract, and invoice to surface hidden costs and savings opportunities.',
-      benefit: 'Find savings you didn\'t know existed.'
+      label: '01',
+      title: 'Fragmented workflows',
+      body: 'Critical information still moves through inboxes, calls, and spreadsheets. Every manual handoff adds latency and creates avoidable quality risk.',
     },
     {
-      id: 'procurement',
-      title: 'Smart procurement',
-      summary: 'AI-driven supplier analysis, contract optimisation, and automated sourcing to reduce procurement spend.',
-      benefit: 'Pay less for every input without sacrificing quality.'
+      label: '02',
+      title: 'Manual cost engineering',
+      body: 'Cost estimates, RFQ responses, and approval loops are often rebuilt manually every cycle. Teams lose time, and consistency depends on individual memory.',
     },
     {
-      id: 'forecasting',
-      title: 'Demand forecasting',
-      summary: 'Predict demand with AI models that learn from your data, market signals, and seasonal patterns.',
-      benefit: 'Reduce overstock and stockouts simultaneously.'
+      label: '03',
+      title: 'Opaque operational leaks',
+      body: 'Cost leakage is usually distributed across many small failures: invoice mismatches, late exception handling, and poor visibility into recurring margin erosion.',
     },
     {
-      id: 'logistics',
-      title: 'Logistics optimisation',
-      summary: 'Optimise routing, carrier selection, and shipment consolidation to cut transportation costs.',
-      benefit: 'Move goods at the lowest cost per unit.'
+      label: '04',
+      title: 'AI without workflow integration',
+      body: 'Many AI pilots fail because they sit outside the real workflow. Without system integration, governed data access, and adoption design, value does not scale.',
     },
-    {
-      id: 'automation',
-      title: 'Workflow automation',
-      summary: 'Automate repetitive processes like PO creation, invoice matching, and approval workflows.',
-      benefit: 'Free your team to focus on strategic decisions.'
-    },
-    {
-      id: 'visibility',
-      title: 'Cost visibility dashboard',
-      summary: 'Real-time spend analytics across every category, supplier, and location in one unified view.',
-      benefit: 'See exactly where your money goes — live.'
-    }
   ],
-  proofMetrics: [
-    { value: '28%', label: 'average cost reduction' },
-    { value: '3.2x', label: 'ROI in first year' },
-    { value: '42%', label: 'faster procurement cycles' },
-    { value: '19%', label: 'lower logistics spend' },
-    { value: '$2.4M', label: 'avg. annual savings per client' }
+  capabilitiesList: [
+    {
+      title: 'Quotation Automation',
+      body: 'AI-assisted RFQ intake, specification parsing, and quote drafting that shortens response cycles while preserving review controls.',
+    },
+    {
+      title: 'Enterprise LLM Systems',
+      body: 'Private enterprise LLMs tuned to your terminology, product context, and SOPs so teams can access relevant answers inside day-to-day workflows.',
+    },
+    {
+      title: 'RAG Implementation',
+      body: 'RAG systems that connect model responses to governed internal documents, project archives, contracts, and specifications.',
+    },
+    {
+      title: 'Workflow Automation',
+      body: 'Workflow automation across disconnected systems, replacing repetitive coordination tasks with event-driven process logic.',
+    },
+    {
+      title: 'Cost Intelligence',
+      body: 'Continuous monitoring of invoices, procurement flows, and rate compliance to surface exceptions before they become recurring loss.',
+    },
+    {
+      title: 'Procurement Intelligence',
+      body: 'Supplier intelligence for scoring, bid support, and sourcing recommendations grounded in historical performance and current constraints.',
+    },
   ],
-  sectors: {
-    logistics: {
-      headline: 'Logistics & freight',
-      summary: 'Cut freight costs by optimising routes, consolidating shipments, and negotiating better rates with AI.',
-      points: [
-        'AI-powered carrier selection and rate benchmarking.',
-        'Shipment consolidation to reduce per-unit costs.',
-        'Real-time cost tracking across every lane and mode.'
-      ]
+  methodologySteps: [
+    {
+      phase: 'Map',
+      title: 'Current-State Mapping',
+      body: 'We map how work is actually done today across systems, teams, and exception paths, not just how process diagrams describe it.',
     },
-    manufacturing: {
-      headline: 'Manufacturing',
-      summary: 'Reduce material costs, minimise waste, and align production with demand using AI.',
-      points: [
-        'Material cost optimisation through smarter sourcing.',
-        'Waste reduction with AI-driven production planning.',
-        'Energy and overhead cost analysis per product line.'
-      ]
+    {
+      phase: 'Diagnose',
+      title: 'Bottleneck Diagnosis',
+      body: 'We isolate fragile handoffs, repetitive manual loops, and decision points that lack usable context.',
     },
-    warehousing: {
-      headline: 'Warehousing & fulfilment',
-      summary: 'Lower warehousing costs through better space utilisation, labour planning, and inventory placement.',
-      points: [
-        'AI-optimised slotting to reduce pick times and labour.',
-        'Dynamic labour allocation based on demand patterns.',
-        'Inventory carrying cost reduction through better turns.'
-      ]
+    {
+      phase: 'Architect',
+      title: 'Solution Architecture',
+      body: 'We design the right mix of AI, automation, and retrieval systems for your environment, with clear ownership and governance design.',
     },
-    distribution: {
-      headline: 'Distribution',
-      summary: 'Optimise distribution costs by balancing inventory, service levels, and network efficiency.',
-      points: [
-        'Network cost modelling across distribution centres.',
-        'AI-driven replenishment to reduce safety stock costs.',
-        'Last-mile delivery cost optimisation.'
-      ]
+    {
+      phase: 'Integrate',
+      title: 'Embedded Deployment',
+      body: 'We deploy into your current stack so teams can use improved workflows inside tools they already operate.',
     },
-    retail: {
-      headline: 'Retail & e-commerce',
-      summary: 'Protect margins by reducing supply chain costs from supplier to shelf.',
+    {
+      phase: 'Compound',
+      title: 'Continuous Refinement',
+      body: 'After go-live, we improve model quality, exception handling, and automation logic using operational feedback and performance metrics.',
+    },
+  ],
+  industriesList: [
+    {
+      name: 'Logistics',
+      headline: 'Automated transport decisions with tighter cost control.',
+      body: 'Support dispatch and freight teams with better carrier decisions, exception routing, and invoice validation.',
       points: [
-        'Markdown and overstock cost reduction with demand AI.',
-        'Supplier cost benchmarking and negotiation insights.',
-        'Omnichannel fulfilment cost optimisation.'
-      ]
-    }
-  },
+        'Rate verification and freight invoice audit workflows',
+        'Carrier performance scoring from live operational data',
+        'Exception routing rules for delay and disruption events',
+      ],
+    },
+    {
+      name: 'Manufacturing',
+      headline: 'Faster quotation and BOM decision support.',
+      body: 'Reduce engineering effort in quotation and sourcing with better context retrieval and structured review workflows.',
+      points: [
+        'BOM cost analysis and alternate part matching',
+        'RFQ ingestion with assisted cost estimation',
+        'Supplier and production feasibility visibility',
+      ],
+    },
+    {
+      name: 'Warehousing',
+      headline: 'Better slotting, labor planning, and receiving accuracy.',
+      body: 'Use operational signals to improve warehouse layout decisions and reduce manual exception handling at receiving and picking.',
+      points: [
+        'Inventory slotting and spacing intelligence',
+        'Labor allocation forecasting by throughput patterns',
+        'Receiving validation and discrepancy flagging',
+      ],
+    },
+    {
+      name: 'Distribution',
+      headline: 'Regional distribution planning with clearer unit economics.',
+      body: 'Improve allocation and fulfillment decisions with stronger visibility into cost-per-unit behavior and exception causes.',
+      points: [
+        'SKU-level cost and margin tracking',
+        'Regional inventory balancing recommendations',
+        'Fulfillment exception triage automation',
+      ],
+    },
+    {
+      name: 'Retail Supply Chain',
+      headline: 'Demand-aware procurement and replenishment support.',
+      body: 'Link demand signals with vendor and replenishment workflows to reduce stock risk and purchasing inefficiency.',
+      points: [
+        'Demand-linked purchase order recommendations',
+        'Margin leakage detection across retail operations',
+        'Supplier SLA compliance monitoring',
+      ],
+    },
+  ],
   trustPillars: [
-    { title: 'Easy integration', text: 'Connects to your ERP, WMS, TMS, and procurement systems in days, not months.' },
-    { title: 'Enterprise security', text: 'SOC 2 compliant. Your data is encrypted, isolated, and never shared.' },
-    { title: 'Scales with you', text: 'From a single site pilot to enterprise-wide rollout without re-architecture.' },
-    { title: 'Fast deployment', text: 'First insights in under 4 weeks. Full deployment within a quarter.' },
-    { title: 'Continuous learning', text: 'Our AI gets smarter over time — finding deeper savings as it learns your data.' },
-    { title: 'Dedicated support', text: 'A named cost optimisation expert works with your team from day one.' }
+    {
+      title: 'Secure Deployment Boundaries',
+      body: 'Deployments respect your infrastructure and data policies, including private cloud and controlled access environments.',
+    },
+    {
+      title: 'Integration with Existing Stack',
+      body: 'We integrate with ERP, WMS, TMS, procurement systems, and internal data services without forcing workflow replacement.',
+    },
+    {
+      title: 'Phased Rollout',
+      body: 'We release in controlled stages with measurable targets so stakeholders can validate performance before wider expansion.',
+    },
+    {
+      title: 'Senior Engineering Access',
+      body: 'Your team works directly with implementation engineers who own architecture decisions and delivery quality.',
+    },
   ],
-  cta: {
-    headline: 'See how much you could save.',
-    subhead:
-      'Get a free AI-powered cost audit of your supply chain. We\'ll show you exactly where the savings are — no commitment required.',
-    form: { name: 'Name', email: 'Work email', message: 'Tell us about your supply chain' },
-    submit: 'Get my free cost audit'
+  ctaSection: {
+    kicker: 'Consultation',
+    meta: 'Typical kickoff includes current-state review, systems map, and an implementation shortlist.',
+    headline: 'Start with one workflow. Improve it end-to-end.',
+    subhead: 'Share your current process, constraints, and timeline. We will identify where AI and automation can deliver measurable impact without operational disruption.',
+    form: {
+      name: 'Name',
+      email: 'Work email',
+      message: 'Describe your workflow challenge, current systems, and timeline...',
+    },
+    submit: 'Request Consultation',
   },
-  footer: {
-    text: 'CostLynk. AI-powered cost optimisation for modern supply chains.'
-  }
 } as const;
 
 export type SiteConfig = typeof site;
