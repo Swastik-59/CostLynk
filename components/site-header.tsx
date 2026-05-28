@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { site } from '@/src/config/site';
 import { cn } from '@/lib/utils';
-import { BRAND } from '@/lib/brand';
 import { MOTION } from '@/lib/design-tokens';
+import { BrandLogo } from '@/components/brand-logo';
 
 export function SiteHeader() {
   const [active, setActive] = useState('#hero');
@@ -73,16 +73,18 @@ export function SiteHeader() {
         className={cn(
           'sticky top-0 z-50 w-full transition-all duration-300',
           scrolled
-            ? 'bg-bg/85 backdrop-blur-md border-b border-stone-200 py-3.5'
+            ? 'bg-bg/90 backdrop-blur-md border-b border-stone-200/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset] py-3.5'
             : 'bg-transparent border-b border-transparent py-5'
         )}
       >
         <div className="frame flex items-center justify-between">
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-2 select-none group">
-            <span className="font-display font-semibold text-lg tracking-[-0.03em] text-fg">
-              {BRAND.name}
-            </span>
+          <a
+            href="#hero"
+            aria-label={`${site.companyName} home`}
+            className="select-none group transition-opacity duration-300 hover:opacity-85"
+          >
+            <BrandLogo size="md" />
           </a>
 
           {/* Nav links */}
@@ -147,9 +149,7 @@ export function SiteHeader() {
             aria-modal="true"
           >
             <div className="flex items-center justify-between">
-              <span className="font-display font-semibold text-lg tracking-[-0.03em] text-fg">
-                {BRAND.name}
-              </span>
+              <BrandLogo size="sm" />
               <button
                 aria-label="Close menu"
                 onClick={() => setDrawerOpen(false)}

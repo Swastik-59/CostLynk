@@ -6,30 +6,38 @@ import { site } from '@/src/config/site';
 import TextReveal from './text-reveal';
 import MagneticButton from './magnetic-button';
 import { MOTION } from '@/lib/design-tokens';
+import { SectionAtmosphere } from '@/components/visual/section-atmosphere';
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
-  // Subtle parallax effect on hero content
-  const yContent = useTransform(scrollY, [0, 800], [0, 120]);
+  const yContent = useTransform(scrollY, [0, 800], [0, 100]);
   const opacityContent = useTransform(scrollY, [0, 600], [1, 0]);
-  const yGrid = useTransform(scrollY, [0, 1000], [0, -48]);
+  const yAccent = useTransform(scrollY, [0, 800], [0, 60]);
 
   return (
     <section
       id="hero"
       ref={containerRef}
-      className="relative min-h-[95vh] flex flex-col justify-center overflow-hidden bg-bg py-20 lg:py-28"
+      className="relative min-h-[96vh] flex flex-col justify-center overflow-hidden bg-bg py-20 lg:py-28"
     >
+      <SectionAtmosphere variant="hero" />
+
       <motion.div
-        style={{ y: yGrid }}
-        data-parallax="0.8"
-        className="pointer-events-none absolute inset-0 opacity-[0.28]"
+        style={{ y: yAccent }}
+        className="pointer-events-none absolute right-[8%] top-[18%] hidden lg:block"
+        aria-hidden
       >
-        <div className="h-full w-full bg-[linear-gradient(to_right,rgba(132,122,102,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(132,122,102,0.12)_1px,transparent_1px)] bg-[size:68px_68px]" />
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" className="opacity-40">
+          <rect x="20" y="20" width="60" height="40" stroke="rgba(77,105,141,0.35)" strokeWidth="1" />
+          <rect x="120" y="20" width="60" height="40" stroke="rgba(77,105,141,0.25)" strokeWidth="1" />
+          <rect x="70" y="100" width="60" height="40" stroke="rgba(77,105,141,0.3)" strokeWidth="1" />
+          <path d="M80 60 L80 80 L100 80 L100 100" stroke="rgba(77,105,141,0.2)" strokeWidth="1" />
+          <path d="M150 60 L150 80 L100 80" stroke="rgba(77,105,141,0.2)" strokeWidth="1" />
+        </svg>
       </motion.div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(77,105,141,0.12),transparent_46%)]" />
+
       <div className="frame flex flex-col justify-between h-full relative z-10">
         <motion.div
           style={{ y: yContent, opacity: opacityContent }}
@@ -52,32 +60,30 @@ export function HeroSection() {
           </div>
 
           <div className="lg:col-span-4 space-y-8 lg:pb-2">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: MOTION.duration.slow, delay: 0.3, ease: MOTION.ease.smooth }}
-              className="max-w-[30ch] text-body text-stone-500 font-sans leading-relaxed text-pretty"
-            >
-              {site.hero.subhead}
-            </motion.p>
+            <div className="panel-frame !p-6 lg:!p-7">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: MOTION.duration.slow, delay: 0.3, ease: MOTION.ease.smooth }}
+                className="max-w-[30ch] text-body text-stone-500 font-sans leading-relaxed text-pretty"
+              >
+                {site.hero.subhead}
+              </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: MOTION.duration.slow, delay: 0.44, ease: MOTION.ease.smooth }}
-              className="flex flex-wrap gap-3 items-center"
-            >
-              <a href="#contact">
-                <MagneticButton variant="primary">
-                  {site.hero.ctaPrimary}
-                </MagneticButton>
-              </a>
-              <a href="#challenge">
-                <MagneticButton variant="secondary">
-                  {site.hero.ctaSecondary}
-                </MagneticButton>
-              </a>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: MOTION.duration.slow, delay: 0.44, ease: MOTION.ease.smooth }}
+                className="mt-8 flex flex-wrap gap-3 items-center"
+              >
+                <a href="#contact">
+                  <MagneticButton variant="primary">{site.hero.ctaPrimary}</MagneticButton>
+                </a>
+                <a href="#challenge">
+                  <MagneticButton variant="secondary">{site.hero.ctaSecondary}</MagneticButton>
+                </a>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
 
@@ -85,17 +91,15 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: MOTION.duration.cinematic, delay: 0.6, ease: MOTION.ease.out }}
-          className="mt-20 lg:mt-28 border-t border-stone-300 pt-6 grid gap-4 md:grid-cols-3"
+          className="mt-20 lg:mt-24 panel-frame !py-5 !px-5 md:!px-6"
           data-reveal
         >
-          <div className="font-mono text-micro text-stone-500">
-            {site.hero.metaPrimary}
-          </div>
-          <div className="font-mono text-micro text-stone-500">
-            {site.hero.metaSecondary}
-          </div>
-          <div className="font-mono text-micro text-stone-500 md:text-right">
-            {site.hero.metaTertiary}
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="font-mono text-micro text-stone-500">{site.hero.metaPrimary}</div>
+            <div className="font-mono text-micro text-stone-500">{site.hero.metaSecondary}</div>
+            <div className="font-mono text-micro text-stone-500 md:text-right">
+              {site.hero.metaTertiary}
+            </div>
           </div>
         </motion.div>
       </div>

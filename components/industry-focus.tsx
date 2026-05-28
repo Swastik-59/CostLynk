@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { site } from '@/src/config/site';
 import { SectionShell } from '@/components/section-shell';
 import { MOTION } from '@/lib/design-tokens';
+import { SystemModule } from '@/components/visual/system-module';
 
 const tabs = [
   { key: 'logistics', label: 'LOGISTICS' },
@@ -19,7 +20,6 @@ type TabKey = (typeof tabs)[number]['key'];
 export function IndustryFocusSection() {
   const [active, setActive] = useState<TabKey>('logistics');
 
-  // Find corresponding index or entry
   const currentIndex = tabs.findIndex((t) => t.key === active);
   const currentData = site.industriesList[currentIndex] ?? site.industriesList[0];
 
@@ -31,10 +31,12 @@ export function IndustryFocusSection() {
       lead={site.sections.industries.lead}
       variant="dark"
       annotation={site.sections.industries.annotation}
+      atmosphere="dark"
+      density="expansive"
       className="border-y border-stone-800"
     >
       <div className="space-y-10">
-        <div className="flex flex-wrap gap-2 pb-6 border-b border-stone-800">
+        <div className="flex flex-wrap gap-2 pb-6 border-b border-stone-800/80">
           {tabs.map((tab) => {
             const isActive = tab.key === active;
             return (
@@ -44,8 +46,8 @@ export function IndustryFocusSection() {
                 onClick={() => setActive(tab.key)}
                 className={`relative font-mono text-micro px-5 py-2.5 rounded-pill border select-none transition-all duration-300 ${
                   isActive
-                    ? 'bg-stone-100 text-graphite-950 border-stone-100'
-                    : 'bg-transparent text-stone-400 border-stone-800 hover:text-stone-100 hover:border-stone-600'
+                    ? 'bg-stone-100 text-graphite-950 border-stone-100 shadow-glow'
+                    : 'bg-graphite-800/40 text-stone-400 border-stone-700 hover:text-stone-100 hover:border-stone-500'
                 }`}
                 aria-selected={isActive}
               >
@@ -65,7 +67,7 @@ export function IndustryFocusSection() {
               transition={{ duration: MOTION.duration.base, ease: MOTION.ease.smooth }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
             >
-              <div className="lg:col-span-4 space-y-4">
+              <div className="lg:col-span-4 panel-frame-dark space-y-4">
                 <span className="font-mono text-micro text-accent font-semibold block uppercase">
                   {currentData.name} Focus
                 </span>
@@ -83,16 +85,21 @@ export function IndustryFocusSection() {
                 </span>
                 <div className="grid gap-3 md:grid-cols-2">
                   {currentData.points.map((point, index) => (
-                    <motion.div
+                    <SystemModule
                       key={point}
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: MOTION.duration.base, delay: index * MOTION.stagger.subtle }}
-                      className="flex items-center gap-4 rounded-card bg-graphite-800 border border-stone-800 p-5 text-stone-200"
+                      index={index}
+                      variant="dark"
+                      className="!p-5"
                     >
-                      <span className="font-mono text-micro text-accent">0{index + 1}</span>
-                      <p className="text-body text-stone-200 font-medium">{point}</p>
-                    </motion.div>
+                      <div className="flex items-start gap-4">
+                        <span className="font-mono text-micro text-accent shrink-0">
+                          0{index + 1}
+                        </span>
+                        <p className="text-body text-stone-200 font-medium leading-snug">
+                          {point}
+                        </p>
+                      </div>
+                    </SystemModule>
                   ))}
                 </div>
               </div>

@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Inter_Tight } from 'next/font/google';
 import './globals.css';
 import { BRAND } from '@/lib/brand';
 import SmoothScroll from '@/components/smooth-scroll';
+import { CustomCursor } from '@/components/custom-cursor';
 
 const sans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -30,10 +31,9 @@ export const metadata: Metadata = {
   description: 'Enterprise AI and automation systems for high-stakes operational workflows, supply chain, and cost engineering.',
   metadataBase: new URL('https://costlynk.com'),
   icons: {
-    icon: BRAND.favicon,
-    other: [
-      { rel: 'icon', url: BRAND.logo },
-    ],
+    icon: [{ url: BRAND.favicon, type: 'image/png' }],
+    apple: [{ url: BRAND.logo, type: 'image/png' }],
+    shortcut: BRAND.favicon,
   },
 };
 
@@ -45,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body>
+        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

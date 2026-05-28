@@ -64,7 +64,18 @@ const config: Config = {
       },
       boxShadow: {
         soft: '0 20px 72px rgba(18, 22, 28, 0.08)',
+        module: '0 4px 24px rgba(18, 22, 28, 0.04), 0 1px 0 rgba(255,255,255,0.8) inset',
+        glow: '0 0 48px rgba(77, 105, 141, 0.12)',
         inset: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+        'dark-module': '0 24px 64px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.04)',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'blueprint-light':
+          'linear-gradient(to right, rgba(132,122,102,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(132,122,102,0.1) 1px, transparent 1px)',
+      },
+      backgroundSize: {
+        blueprint: '56px 56px',
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',

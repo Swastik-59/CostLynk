@@ -1,6 +1,6 @@
 export const BRAND = {
   name: 'CostLynk',
   descriptor: 'Operational Intelligence',
-  logo: '/logo.svg',
-  favicon: '/favicon.png',
+  logo: '/logo.png',
+  favicon: '/logo.png',
 } as const;

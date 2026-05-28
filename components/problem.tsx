@@ -14,8 +14,11 @@ export function ProblemSection() {
       title={site.sections.challenge.title}
       lead={site.sections.challenge.lead}
       annotation={site.sections.challenge.annotation}
+      atmosphere="dense"
+      density="compact"
+      framed
     >
-      <div className="mt-20 space-y-12">
+      <div className="space-y-0 divide-y divide-stone-200/80">
         {site.challenges.map((challenge, index) => (
           <ChallengeRow
             key={challenge.title}
@@ -42,21 +45,14 @@ function ChallengeRow({ index, label, title, body }: ChallengeRowProps) {
   const isInView = useInView(rowRef, { once: true, margin: '-10%' });
 
   return (
-    <div ref={rowRef} className="group relative">
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ duration: MOTION.duration.slower, ease: MOTION.ease.smooth }}
-        className="absolute top-0 left-0 right-0 h-px bg-stone-300 origin-left"
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-8 pb-4">
-        <div className="md:col-span-2 flex flex-col justify-between">
+    <div ref={rowRef} className="group relative py-8 md:py-10 first:pt-0 last:pb-0">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+        <div className="md:col-span-2">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: MOTION.duration.slow, ease: MOTION.ease.smooth }}
-            className="font-display text-[4.5rem] md:text-[5.2rem] font-semibold text-stone-200 leading-[0.82] tracking-tighter select-none"
+            className="font-display text-[4rem] md:text-[4.8rem] font-semibold text-stone-200 leading-[0.82] tracking-tighter select-none"
           >
             {label}
           </motion.span>
@@ -80,14 +76,18 @@ function ChallengeRow({ index, label, title, body }: ChallengeRowProps) {
           >
             {body}
           </motion.p>
-          <motion.p
+
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: MOTION.duration.slow, delay: 0.2, ease: MOTION.ease.smooth }}
-            className="font-mono text-micro text-stone-400 lg:col-span-2 lg:text-right"
+            className="lg:col-span-2 flex lg:justify-end"
           >
-            SYSTEM FRICTION
-          </motion.p>
+            <span className="inline-flex items-center gap-2 font-mono text-micro text-stone-400 border border-stone-200 rounded-pill px-3 py-1.5 bg-stone-50/80">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
+              FRICTION
+            </span>
+          </motion.div>
         </div>
       </div>
     </div>

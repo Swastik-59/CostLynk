@@ -28,7 +28,7 @@ export default function HomePage() {
         <SectionDivider label="03 // DELIVERY METHOD" />
         <MethodologySection />
         
-        <SectionDivider label="04 // INDUSTRY APPLICATION" className="bg-graphite-900" />
+        <SectionDivider label="04 // INDUSTRY APPLICATION" variant="dark" className="bg-graphite-900" />
         <IndustryFocusSection />
         
         <SectionDivider label="05 // DEPLOYMENT ASSURANCE" />
