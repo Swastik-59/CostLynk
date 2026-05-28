@@ -1,137 +1,131 @@
 export const navLinks = [
-  { label: 'Problem', href: '#problem' },
+  { label: 'Challenge', href: '#problem' },
   { label: 'Solutions', href: '#solutions' },
-  { label: 'System', href: '#system' },
+  { label: 'How it works', href: '#system' },
   { label: 'Process', href: '#process' },
-  { label: 'Proof', href: '#proof' },
-  { label: 'Sectors', href: '#sectors' },
-  { label: 'Contact', href: '#contact' }
+  { label: 'Results', href: '#proof' },
+  { label: 'Industries', href: '#sectors' },
+  { label: 'Get started', href: '#contact' }
 ];
 
 export const solutions = [
   {
+    id: 'cost-analysis',
+    title: 'AI cost analysis',
+    summary: 'Our AI scans every transaction, contract, and invoice to surface hidden costs and savings opportunities.',
+    benefit: 'Find savings you didn\'t know existed.'
+  },
+  {
+    id: 'procurement',
+    title: 'Smart procurement',
+    summary: 'AI-driven supplier analysis, contract optimisation, and automated sourcing to reduce procurement spend.',
+    benefit: 'Pay less for every input without sacrificing quality.'
+  },
+  {
     id: 'forecasting',
     title: 'Demand forecasting',
-    summary: 'Models demand with cleaner signals from orders, seasonality, and external movement.',
-    benefit: 'Plan inventory with fewer manual adjustments.'
+    summary: 'Predict demand with AI models that learn from your data, market signals, and seasonal patterns.',
+    benefit: 'Reduce overstock and stockouts simultaneously.'
+  },
+  {
+    id: 'logistics',
+    title: 'Logistics optimisation',
+    summary: 'Optimise routing, carrier selection, and shipment consolidation to cut transportation costs.',
+    benefit: 'Move goods at the lowest cost per unit.'
   },
   {
     id: 'automation',
-    title: 'Autonomous workflow automation',
-    summary: 'Moves routine decisions and handoffs out of inboxes and into governed workflows.',
-    benefit: 'Reduce operational friction across planning and execution.'
-  },
-  {
-    id: 'exceptions',
-    title: 'Exception detection and response',
-    summary: 'Detects deviations early and routes the next best action to the right team.',
-    benefit: 'Shorten response times when service is at risk.'
+    title: 'Workflow automation',
+    summary: 'Automate repetitive processes like PO creation, invoice matching, and approval workflows.',
+    benefit: 'Free your team to focus on strategic decisions.'
   },
   {
     id: 'visibility',
-    title: 'Supply chain visibility',
-    summary: 'Unifies status across warehouses, lanes, vendors, and internal systems.',
-    benefit: 'See bottlenecks before they spread.'
-  },
-  {
-    id: 'optimization',
-    title: 'Optimization and decision support',
-    summary: 'Surfaces the best move across cost, service, labor, and capacity constraints.',
-    benefit: 'Align planning with execution more reliably.'
-  },
-  {
-    id: 'digital-twin',
-    title: 'Digital twin and simulation',
-    summary: 'Tests operational changes before they hit the floor or the network.',
-    benefit: 'Make changes with less risk and more clarity.'
-  },
-  {
-    id: 'integration',
-    title: 'Systems integration',
-    summary: 'Connects ERP, WMS, TMS, CRM, and analytics stacks through governed interfaces.',
-    benefit: 'Coordinate decisions across systems instead of between them.'
+    title: 'Cost visibility dashboard',
+    summary: 'Real-time spend analytics across every category, supplier, and location in one unified view.',
+    benefit: 'See exactly where your money goes — live.'
   }
 ];
 
 export const impactCards = [
-  { value: '38%', label: 'faster exception response' },
-  { value: '17%', label: 'forecast accuracy lift' },
-  { value: '29%', label: 'fewer manual touches' },
-  { value: '21%', label: 'lower stockouts' },
-  { value: '2.4x', label: 'faster planning cycles' }
+  { value: '28%', label: 'average cost reduction' },
+  { value: '3.2x', label: 'ROI in first year' },
+  { value: '42%', label: 'faster procurement cycles' },
+  { value: '19%', label: 'lower logistics spend' },
+  { value: '$2.4M', label: 'avg. annual savings per client' }
 ];
 
 export const trustPillars = [
   {
-    title: 'Integrations',
-    text: 'ERP, WMS, TMS, CRM, BI, and event streams connected with governed handoffs.'
+    title: 'Easy integration',
+    text: 'Connects to your ERP, WMS, TMS, and procurement systems in days, not months.'
   },
   {
-    title: 'Security',
-    text: 'Least-privilege access, auditability, and clear ownership across environments.'
+    title: 'Enterprise security',
+    text: 'SOC 2 compliant. Your data is encrypted, isolated, and never shared.'
   },
   {
-    title: 'Scalability',
-    text: 'Built to support site-level pilots and enterprise rollouts without redesign.'
+    title: 'Scales with you',
+    text: 'From a single site pilot to enterprise-wide rollout without re-architecture.'
   },
   {
-    title: 'Deployment',
-    text: 'Phased delivery aligned to operational windows, change control, and adoption.'
+    title: 'Fast deployment',
+    text: 'First insights in under 4 weeks. Full deployment within a quarter.'
   },
   {
-    title: 'Enterprise readiness',
-    text: 'Governance, monitoring, and support expectations designed for larger teams.'
+    title: 'Continuous learning',
+    text: 'Our AI gets smarter over time — finding deeper savings as it learns your data.'
   },
   {
-    title: 'Implementation support',
-    text: 'Strategy, build, integration, and team enablement from one delivery partner.'
+    title: 'Dedicated support',
+    text: 'A named cost optimisation expert works with your team from day one.'
   }
 ];
 
 export const sectors = {
   logistics: {
-    headline: 'Logistics',
-    summary: 'Reduce routing drift, delay response, and lane-level uncertainty.',
+    headline: 'Logistics & freight',
+    summary: 'Cut freight costs by optimising routes, consolidating shipments, and negotiating better rates with AI.',
     points: [
-      'Live exception routing for shipments at risk.',
-      'Load and lane visibility across the day.',
-      'Decision support for service recovery.'
+      'AI-powered carrier selection and rate benchmarking.',
+      'Shipment consolidation to reduce per-unit costs.',
+      'Real-time cost tracking across every lane and mode.'
     ]
   },
   manufacturing: {
     headline: 'Manufacturing',
-    summary: 'Keep production aligned with supply, labor, and downstream demand.',
+    summary: 'Reduce material costs, minimise waste, and align production with demand using AI.',
     points: [
-      'Forecast-to-plan alignment for materials.',
-      'Earlier detection of line-side bottlenecks.',
-      'Simulation of schedule changes before release.'
+      'Material cost optimisation through smarter sourcing.',
+      'Waste reduction with AI-driven production planning.',
+      'Energy and overhead cost analysis per product line.'
     ]
   },
   warehousing: {
-    headline: 'Warehousing',
-    summary: 'Stabilize throughput, congestion, and labor allocation.',
+    headline: 'Warehousing & fulfilment',
+    summary: 'Lower warehousing costs through better space utilisation, labour planning, and inventory placement.',
     points: [
-      'Queue and congestion detection across shifts.',
-      'Task prioritization for high-risk orders.',
-      'Slotting and labor guidance based on demand.'
+      'AI-optimised slotting to reduce pick times and labour.',
+      'Dynamic labour allocation based on demand patterns.',
+      'Inventory carrying cost reduction through better turns.'
     ]
   },
   distribution: {
     headline: 'Distribution',
-    summary: 'Coordinate replenishment, service targets, and inventory flow.',
+    summary: 'Optimise distribution costs by balancing inventory, service levels, and network efficiency.',
     points: [
-      'Network visibility from source to store or customer.',
-      'Reorder guidance tuned to service thresholds.',
-      'Faster exception handling across nodes.'
+      'Network cost modelling across distribution centres.',
+      'AI-driven replenishment to reduce safety stock costs.',
+      'Last-mile delivery cost optimisation.'
     ]
   },
   retail: {
-    headline: 'Retail supply chain',
-    summary: 'Protect availability while reducing overstock and noise.',
+    headline: 'Retail & e-commerce',
+    summary: 'Protect margins by reducing supply chain costs from supplier to shelf.',
     points: [
-      'Store and region-level demand sensing.',
-      'Inventory balancing across nodes.',
-      'Replenishment support with cleaner signals.'
+      'Markdown and overstock cost reduction with demand AI.',
+      'Supplier cost benchmarking and negotiation insights.',
+      'Omnichannel fulfilment cost optimisation.'
     ]
   }
 } as const;

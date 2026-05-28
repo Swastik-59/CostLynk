@@ -1,21 +1,21 @@
 import { SectionShell } from '@/components/section-shell';
 
 const steps = [
-  ['Assess', 'Map the current operating model, data flows, and exception load.'],
-  ['Model', 'Define the highest-value decision paths and system dependencies.'],
-  ['Integrate', 'Connect source systems and normalize the signals that matter.'],
-  ['Automate', 'Move repetitive actions and handoffs into governed workflows.'],
-  ['Optimize', 'Tune forecasting, routing, and response logic against outcomes.'],
-  ['Scale', 'Roll the system into adjacent teams, sites, or operating regions.']
+  ['Audit', 'We analyse your current supply chain spend, contracts, and workflows to identify cost leakage.'],
+  ['Map savings', 'Our AI maps every saving opportunity by category, supplier, and process — ranked by impact.'],
+  ['Integrate', 'CostLynk connects to your existing systems. No rip-and-replace. Live in days.'],
+  ['Optimise', 'AI-driven recommendations start flowing. Your team reviews and acts on prioritised savings.'],
+  ['Automate', 'Repetitive cost decisions get automated — procurement, approvals, and reorder points.'],
+  ['Scale', 'Expand AI optimisation to new categories, sites, and supply chain partners.']
 ];
 
 export function ProcessSection() {
   return (
     <SectionShell
       id="process"
-      eyebrow="Delivery model"
-      title="A disciplined sequence from audit to autonomous execution."
-      lead="The work stays concrete: first understand the operating system, then shape the decision model, then automate what should no longer depend on manual judgment."
+      eyebrow="Our process"
+      title="From cost audit to continuous optimisation in weeks, not months."
+      lead="We start by understanding your costs, then deploy AI that delivers measurable savings — fast and with full transparency."
     >
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {steps.map(([title, text], index) => (

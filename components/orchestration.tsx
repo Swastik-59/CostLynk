@@ -7,20 +7,20 @@ import { motionSystem } from '@/lib/motion';
 
 const layers = [
   {
-    title: 'Signal intake',
-    body: 'ERP, WMS, TMS, and event streams are normalized into a single operational view.'
+    title: 'Data ingestion',
+    body: 'CostLynk connects to your ERP, procurement, and logistics systems to pull in spend, vendor, and operations data.'
   },
   {
-    title: 'Decision layer',
-    body: 'Exceptions are ranked by service exposure, capacity pressure, and control rules.'
+    title: 'AI analysis',
+    body: 'Our AI models analyse cost patterns, benchmark against market rates, and identify savings opportunities across every category.'
   },
   {
-    title: 'Execution loop',
-    body: 'Actions are routed back into the systems teams already use, with governance preserved.'
+    title: 'Actionable recommendations',
+    body: 'Prioritised savings recommendations are delivered to your team with clear steps, expected impact, and one-click implementation.'
   }
 ];
 
-const sequence = ['Signals in', 'Decisions resolved', 'Actions out'];
+const sequence = ['Connect your data', 'AI finds savings', 'You take action'];
 
 export function OrchestrationSection() {
   return (
@@ -34,9 +34,9 @@ export function OrchestrationSection() {
           className="space-y-4"
         >
           <div className="rounded-[1.5rem] border border-line/70 bg-white/78 p-6 shadow-soft">
-            <div className="font-mono text-[0.68rem] uppercase tracking-[0.34em] text-muted">Operating sequence</div>
+            <div className="font-mono text-[0.68rem] uppercase tracking-[0.34em] text-muted">How CostLynk works</div>
             <p className="mt-5 text-sm leading-7 text-muted">
-              The presentation is intentionally flat. The system is the point; the visual language stays quiet.
+              Three simple steps. Your data stays secure. The AI does the heavy lifting.
             </p>
 
             <div className="mt-8 grid gap-3">
@@ -51,7 +51,7 @@ export function OrchestrationSection() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            {['Sense', 'Model', 'Route'].map((item) => (
+            {['Analyse', 'Optimise', 'Save'].map((item) => (
               <div key={item} className="rounded-[1rem] border border-line/60 bg-white/70 px-4 py-3 text-sm text-fg">
                 {item}
               </div>
@@ -70,8 +70,8 @@ export function OrchestrationSection() {
 
           <div className="relative">
             <div className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.34em] text-white/45">
-              <span>Signal path</span>
-              <span>Governed topology</span>
+              <span>AI pipeline</span>
+              <span>CostLynk engine</span>
             </div>
 
             <div className="mt-8 grid gap-4">
@@ -95,7 +95,7 @@ export function OrchestrationSection() {
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {['Capture', 'Resolve', 'Execute'].map((item) => (
+              {['Ingest', 'Analyse', 'Recommend'].map((item) => (
                 <div key={item} className="rounded-[1rem] border border-white/10 bg-white/[0.045] px-4 py-3 text-sm text-white/75">
                   {item}
                 </div>

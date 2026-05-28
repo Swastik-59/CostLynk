@@ -7,32 +7,32 @@ import { MOTION } from '@/lib/design-tokens';
 import { createStaggeredReveal } from '@/lib/motion-presets';
 import { theme } from '@/lib/theme';
 
-const diagnosticLabels = ['Signal drift', 'Planning lag', 'Execution gap', 'Manual triage'];
+const diagnosticLabels = ['Overspending', 'Manual processes', 'Poor visibility', 'Missed savings'];
 
 const problems = [
   {
-    title: 'Demand volatility',
-    text: 'Short-term shifts in orders and external demand that planning cycles do not absorb quickly.'
+    title: 'Opaque spend data',
+    text: 'Costs are scattered across spreadsheets, ERPs, and invoices — making it impossible to see the full picture.'
   },
   {
-    title: 'Inventory imbalance',
-    text: 'Allocation that leaves some nodes overstocked while others are undersupplied.'
+    title: 'Reactive purchasing',
+    text: 'Procurement decisions are based on habit, not data. You\'re paying more than you should for materials and services.'
   },
   {
-    title: 'Delayed exception handling',
-    text: 'Incidents that escalate because routing and triage are manual and slow.'
+    title: 'Inventory waste',
+    text: 'Too much stock in the wrong places. Overstock eats cash while stockouts lose sales.'
   },
   {
-    title: 'Fragmented systems',
-    text: 'Differing operational state across ERP, WMS, and TMS undermines cohesive action.'
+    title: 'Freight overspend',
+    text: 'Suboptimal routes, unconsolidated shipments, and uncompetitive carrier rates inflate logistics costs.'
   },
   {
-    title: 'Warehouse congestion',
-    text: 'Bottlenecks created by misaligned labor, slotting, and demand surges.'
+    title: 'Manual workflows',
+    text: 'Teams spend hours on PO creation, invoice matching, and approvals that should be automated.'
   },
   {
-    title: 'Routing inefficiency',
-    text: 'Local optimizations that increase network cost and delay recovery.'
+    title: 'No cost benchmarking',
+    text: 'Without data-driven benchmarks, you can\'t know if you\'re getting competitive rates from suppliers.'
   }
 ];
 
@@ -49,7 +49,7 @@ export function ProblemSection() {
           viewport={{ once: true, margin: '-100px' }}
           className="rounded-[1.5rem] border border-line/60 bg-white/72 p-6 shadow-soft lg:sticky lg:top-24"
         >
-          <div className={theme.typography.label + ' text-muted'}>Diagnostic readout</div>
+          <div className={theme.typography.label + ' text-muted'}>Cost leakage areas</div>
           <div className="mt-8 space-y-5">
             {diagnosticLabels.map((item, index) => (
               <motion.div
